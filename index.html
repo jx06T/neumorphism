@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>課表產生器</title>
+
+    <link rel="stylesheet" href="neumorphism.css">
+    <link rel="stylesheet" href="layout.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@3.7.1/dist/dom-to-image-more.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/dom-to-image-more@3.7.1/spec/resources/fonts/web-fonts/embedded.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-emboss">課表產生器</h1>
+        <div class="controls neumo convex soft">
+            <div class="control-group">
+                <label>選擇年月</label>
+                <div id="year-controls">
+                    <button id="prev-year-btn" class="neumo convex soft">◀</button>
+                    <span id="current-year-display">2024</span>
+                    <button id="next-year-btn" class="neumo convex soft">▶</button>
+                </div>
+                <div id="month-selector"></div>
+            </div>
+            <div class="control-group">
+                <label for="csv-input">自訂事件 (會覆蓋預設課表)</label>
+                <textarea id="csv-input" rows="9" class="neumo concave"
+                    placeholder="格式: YYYY-MM-DD,事件名稱&#10;點擊下方日期可直接修改此處資料。"></textarea>
+            </div>
+            <div class="control-group">
+                <label>操作</label>
+                <div class="button-group">
+                    <button id="export-btn" class="neumo convex soft accent">匯出圖片</button>
+                </div>
+            </div>
+        </div>
+        <div id="calendar-wrapper" class="neumo convex soft">
+            <div class="month-header ">
+                <h1 class=" text-inset neumo convex">2025 1月</h1>
+            </div>
+            <div class="week-header text-emboss">
+                <div>日</div>
+                <div>一</div>
+                <div>二</div>
+                <div>三</div>
+                <div>四</div>
+                <div>五</div>
+                <div>六</div>
+            </div>
+            <div id="calendar-grid"></div>
+
+            <div class="footer neumo concave">
+                <p>
+                    建北電資 30th x 31st － 小社課課表
+                </p>
+                <p>
+                    上課地點：建中電教一　時間：17:30～19:00
+                </p>
+                <p>
+                    更新日期：<span id="update-date">2025-09-06</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <button id="theme-toggle" class="neumo convex soft" title="切換主題">◑</button>
+
+    <div id="modal-overlay">
+        <div id="edit-modal-content">
+            <div class="modal-body neumo convex soft">
+                <h3 id="modal-title">編輯事件</h3>
+                <input type="text" id="event-input" class="neumo concave" placeholder="輸入事件名稱...">
+                <div class="modal-actions">
+                    <button id="cancel-btn" class="neumo convex soft">取消</button>
+                    <button id="save-btn" class="neumo convex soft accent">儲存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+/* neumorphism.css */
+
+/* --- 核心變數定義 --- */
+:root {
+  /* 淺色主題 */
+  --nm-bg-light: #efefef;
+  --nm-text-light: #5c5e64;
+  --nm-shadow-light-L: #ffffff;
+  --nm-shadow-light-D: #d1d1d1;
+  --nm-text-muted-light: #d6d6d6;
+  --nm-text-g-light: #a2a3a5;
+  --nm-accent: #28cfdb;
+
+  /* 深色主題 */
+  --nm-bg-dark: #2b2f35;
+  --nm-text-dark: #c1c3c9;
+  --nm-shadow-dark-L: #343840;
+  --nm-shadow-dark-D: #22252a;
+  --nm-text-muted-dark: #4b4c4e;
+  --nm-text-g-dark: #8e8f92;
+
+  /* 通用設定 */
+  --nm-radius: 12px;
+  --nm-transition: all 0.2s ease-in-out;
+  --nm-dist-soft: 6px;
+  --nm-blur-soft: 12px;
+
+  /* 當前主題變數 (預設為淺色) */
+  --bg-color: var(--nm-bg-light);
+  --text-color: var(--nm-text-light);
+  --shadow-L: var(--nm-shadow-light-L);
+  --shadow-D: var(--nm-shadow-light-D);
+  --text-muted-color: var(--nm-text-muted-light);
+  --text-g-color: var(--nm-text-g-light);
+}
+
+/* --- 主題切換 --- */
+body.dark-theme {
+  --bg-color: var(--nm-bg-dark);
+  --text-color: var(--nm-text-dark);
+  --shadow-L: var(--nm-shadow-dark-L);
+  --shadow-D: var(--nm-shadow-dark-D);
+  --text-muted-color: var(--nm-text-muted-dark);
+  --text-g-color: var(--nm-text-g-dark);
+}
+
+/* --- 基礎 Class --- */
+.neumo {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border-radius: var(--nm-radius);
+  transition: var(--nm-transition);
+  position: relative;
+  border: none;
+  outline: none;
+}
+
+/* --- 形狀 Class --- */
+.neumo.convex {
+  box-shadow: calc(var(--nm-dist-soft) * -1) calc(var(--nm-dist-soft) * -1)
+      var(--nm-blur-soft) var(--shadow-L),
+    var(--nm-dist-soft) var(--nm-dist-soft) var(--nm-blur-soft) var(--shadow-D);
+}
+.neumo.concave {
+  box-shadow: inset calc(var(--nm-dist-soft) * -1)
+      calc(var(--nm-dist-soft) * -1) var(--nm-blur-soft) var(--shadow-L),
+    inset var(--nm-dist-soft) var(--nm-dist-soft) var(--nm-blur-soft)
+      var(--shadow-D);
+}
+
+/* --- 狀態 Class --- */
+button.neumo:not(.day-cell):active,
+button.neumo.active {
+  box-shadow: inset 2px 2px 5px var(--shadow-D),
+    inset -2px -2px 5px var(--shadow-L);
+}
+
+/* --- 修飾 Class --- */
+.neumo.accent {
+  color: var(--nm-accent);
+}
+
+#edit-modal-content.neumo {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border-radius: var(--nm-radius);
+  transition: var(--nm-transition);
+  position: relative;
+  border: none;
+  outline: none;
+}
+
+.text-inset {
+  text-shadow: 
+    0.5px 0.5px 0.5px var(--shadow-L),
+    -0.5px -0.5px 0.5px var(--shadow-D);
+}
+
+.text-emboss {
+  text-shadow:
+    0.5px 0.5px 0.5px var(--shadow-D),
+    -0.5px -0.5px 0.5px var(--shadow-L);
+}
+
+.dark-theme .text-inset{
+  text-shadow: 
+    0.6px 0.6px 0.4px var(--shadow-L),
+    -0.6px -0.6px 0.4px var(--shadow-D);
+}
+
+.dark-theme .text-emboss{
+  text-shadow:
+    0.6px 0.6px 0.4px var(--shadow-D),
+    -0.6px -0.6px 0.4px var(--shadow-L);
+}
