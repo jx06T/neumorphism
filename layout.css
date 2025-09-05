@@ -115,7 +115,7 @@ button {
 
 .day-cell.weekend .day-number {
   color: var(--nm-accent);
-  padding-bottom: 28px;
+  /* padding-bottom: 28px; */
 }
 
 .day-number {
