@@ -76,9 +76,17 @@ button {
 
 /* --- 日曆區塊 --- */
 #calendar-wrapper {
+  padding: 36px;
+  margin: -36px;
+  padding-top: 46px;
+  width: calc(36px+100%);
+}
+
+#cw {
   padding: 1.5rem;
   width: 100%;
 }
+
 .week-header {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -241,13 +249,12 @@ button {
   margin-bottom: 16px;
   margin-top: -2px;
   padding: 8px;
-  padding-left: 32px;
-  padding-right: 32px;
+  width: 50%;
 }
 
 .footer {
   display: grid;
-  grid-template-columns: 1.3fr 2fr 1fr;
+  grid-template-columns: 1.2fr 2fr 1fr;
   margin-top: 24px;
   padding: 16px;
   padding-left: 24px;

@@ -6,3 +6,5 @@
 
 ## Demo
 [https://jx06t.github.io/neumorphism/](https://jx06t.github.io/neumorphism/)
+
+> 沒有太認真做基本上完全沒有 RWD 反正他在我電腦螢幕是好的，且僅支持電腦端匯出圖片
