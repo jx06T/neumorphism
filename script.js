@@ -93,6 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
         yearDisplay.textContent = currentYear;
         updateActiveMonthButton();
         generateCalendar(currentYear, currentMonth);
+
+        const headerDateElement = document.getElementById('current-month');
+        headerDateElement.textContent = `${currentYear} 年　 ${currentMonth}月`;
     }
 
     function updateActiveMonthButton() {
@@ -100,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         buttons.forEach(btn => {
             btn.classList.toggle('active', parseInt(btn.dataset.month) === currentMonth);
         });
+
     }
 
     function toggleTheme() {
@@ -203,15 +207,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateFooterDate() {
-        const dateElement = document.getElementById('update-date');
-        if (!dateElement) return; // 如果找不到元素就提前退出
+        const footerDateElement = document.getElementById('update-date');
+        if (!footerDateElement) return; 
 
         const today = new Date();
         const year = today.getFullYear();
         const month = String(today.getMonth() + 1).padStart(2, '0');
         const day = String(today.getDate()).padStart(2, '0');
 
-        dateElement.textContent = `${year}-${month}-${day}`;
+        footerDateElement.textContent = `${year}-${month}-${day}`;
+
     }
 
     // --- Start the App ---
