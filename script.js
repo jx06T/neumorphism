@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         generateCalendar(currentYear, currentMonth);
 
         const headerDateElement = document.getElementById('current-month');
-        headerDateElement.textContent = `${currentYear} 年　 ${currentMonth}月`;
+        headerDateElement.textContent = `${currentYear} 年　 ${currentMonth} 月`;
     }
 
     function updateActiveMonthButton() {
