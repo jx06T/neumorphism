@@ -9,15 +9,23 @@
   --nm-shadow-light-D: #d1d1d1;
   --nm-text-muted-light: #d6d6d6;
   --nm-text-g-light: #a2a3a5;
-  --nm-accent: #28cfdb;
+  /* --nm-accent: #28cfdb; */
+  --nm-accent: #b8f0e5;
 
   /* 深色主題 */
   --nm-bg-dark: #2b2f35;
   --nm-text-dark: #c1c3c9;
   --nm-shadow-dark-L: #343840;
   --nm-shadow-dark-D: #22252a;
-  --nm-text-muted-dark: #4b4c4e;
+  --nm-text-muted-dark: #626467;
   --nm-text-g-dark: #8e8f92;
+
+  /* [新增] 課程顏色變數 (淺色模式) */
+  --course-color-web: #007bff; /* 藍色 */
+  --course-color-unity: #6f42c1; /* 紫色 */
+  --course-color-algo: #28a745; /* 綠色 */
+  --course-color-python: #fd7e14; /* 橘色 */
+  --course-color-security: #dc3545; /* 紅色 */
 
   /* 通用設定 */
   --nm-radius: 12px;
@@ -42,6 +50,18 @@ body.dark-theme {
   --shadow-D: var(--nm-shadow-dark-D);
   --text-muted-color: var(--nm-text-muted-dark);
   --text-g-color: var(--nm-text-g-dark);
+
+  /* [新增] 課程顏色變數 (深色模式 - 顏色更亮以提高對比度) */
+  /* --course-color-web: #3395ff;
+  --course-color-unity: #9B6DFF;
+  --course-color-algo: #48C463;
+  --course-color-python: #FFA94D;
+  --course-color-security: #FF6B78; */
+  --course-color-web: #8cabe3;
+  --course-color-unity: #c594d6;
+  --course-color-algo: #cfe89e;
+  --course-color-python: #f9d588;
+  --course-color-security: #fa897b;
 }
 
 /* --- 基礎 Class --- */
@@ -67,8 +87,6 @@ body.dark-theme {
     inset var(--nm-dist-soft) var(--nm-dist-soft) var(--nm-blur-soft)
       var(--shadow-D);
 }
-
-/* [新增] 平面樣式 */
 .neumo.flat {
   box-shadow: none;
 }
@@ -95,26 +113,37 @@ button.neumo.active {
   outline: none;
 }
 
+/* [新增] 課程顏色 Class */
+.course-color-web {
+  color: var(--course-color-web);
+}
+.course-color-unity {
+  color: var(--course-color-unity);
+}
+.course-color-algo {
+  color: var(--course-color-algo);
+}
+.course-color-python {
+  color: var(--course-color-python);
+}
+.course-color-security {
+  color: var(--course-color-security);
+}
+
+/* --- 文字效果 --- */
 .text-inset {
-  text-shadow: 
-    0.5px 0.5px 0.5px var(--shadow-L),
+  text-shadow: 0.5px 0.5px 0.5px var(--shadow-L),
     -0.5px -0.5px 0.5px var(--shadow-D);
 }
-
 .text-emboss {
-  text-shadow:
-    0.5px 0.5px 0.5px var(--shadow-D),
+  text-shadow: 0.5px 0.5px 0.5px var(--shadow-D),
     -0.5px -0.5px 0.5px var(--shadow-L);
 }
-
-.dark-theme .text-inset{
-  text-shadow: 
-    0.6px 0.6px 0.4px var(--shadow-L),
+.dark-theme .text-inset {
+  text-shadow: 0.6px 0.6px 0.4px var(--shadow-L),
     -0.6px -0.6px 0.4px var(--shadow-D);
 }
-
-.dark-theme .text-emboss{
-  text-shadow:
-    0.6px 0.6px 0.4px var(--shadow-D),
+.dark-theme .text-emboss {
+  text-shadow: 0.6px 0.6px 0.4px var(--shadow-D),
     -0.6px -0.6px 0.4px var(--shadow-L);
 }

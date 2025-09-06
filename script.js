@@ -1,12 +1,17 @@
 // script.js
 document.addEventListener('DOMContentLoaded', () => {
     // --- Config ---
-    const COURSE_SUBJECTS = ['網頁', 'Unity', '演算法', 'Python', '資安'];
+    const COURSE_CONFIG = [
+        { name: '網頁', className: 'course-color-web' },
+        { name: 'Unity', className: 'course-color-unity' },
+        { name: '演算法', className: 'course-color-algo' },
+        { name: 'Python', className: 'course-color-python' },
+        { name: '資安', className: 'course-color-security' },
+    ];
     const DEFAULT_SCHEDULE = { 1: 'Unity', 2: '資安', 3: '演算法', 4: 'Python', 5: '網頁' };
     const MONTH_NAMES = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
     const HOLIDAY_KEYWORDS = ['假', '節', '日'];
-    
-    // [新增] 在此處修改預設的 CSV 內容
+
     const DEFAULT_CSV = `2025-09-01,-
 2025-09-02,-
 2025-09-03,-
@@ -26,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
 2025-09-23,-
 2025-09-24,-
 2025-09-25,-
-2025-09-26,-
 2025-09-29,教師節
 2025-10-06,中秋節
 2025-10-07,-段考週
@@ -34,8 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
 2025-10-09,-段考週
 2025-10-10,國慶日
 2025-10-13,-段考週
-2025-10-14,_段考
-2025-10-15,_段考
+2025-10-14,_段考日
+2025-10-15,_段考日
 2025-10-16,（Python)
 2025-10-17,（網頁）
 2025-10-24,光復節
@@ -45,8 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
 2025-11-20, -段考週
 2025-11-21, -段考週
 2025-11-24, -段考週
-2025-11-25,_段考
-2025-11-26,_段考
+2025-11-25,_段考日
+2025-11-26,_段考日
 2025-11-27,（Python）
 2025-11-28,（網頁）
 2025-12-08,校慶補假
@@ -59,9 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
 2026-01-09, -段考週
 2026-01-12, -段考週
 2026-01-13, -段考週
-2026-01-14,_段考
-2026-01-15,_段考
-2026-01-16,_段考
+2026-01-14,_段考日
+2026-01-15,_段考日
+2026-01-16,_段考日
 2026-01-19,-
 2026-01-20, -
 2026-01-21, -
@@ -187,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (editingDate) updateCsvAndRefresh(editingDate, eventInput.value);
         hideModal();
     }
-    
+
     function restoreDefaultCsv() {
         if (confirm('這會覆蓋目前的自訂事件，確定要還原為預設內容嗎？')) {
             csvInput.value = DEFAULT_CSV;
@@ -213,60 +217,67 @@ document.addEventListener('DOMContentLoaded', () => {
             const cell = document.createElement('div');
             const dayOfWeek = new Date(year, month - 1, day).getDay();
             const currentDateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-            
+
             const subjectFromCsv = data.get(currentDateStr);
             const subjectFromDefault = DEFAULT_SCHEDULE[dayOfWeek];
             const finalSubject = subjectFromCsv !== undefined ? subjectFromCsv : subjectFromDefault;
 
-            // ==========================================================
-            // [核心修改] 重構形狀 (凹凸) 和顏色 (accent) 的判斷邏輯
-            // ==========================================================
             let displaySubject = finalSubject || '';
-            let shapeClass; // 先不設定預設值，由邏輯決定
+            let shapeClass;
             const firstChar = displaySubject.charAt(0);
 
-            // 1. 最高優先級：前綴字元 (_, -, ^)
             if (['_', '-', '^'].includes(firstChar)) {
                 displaySubject = displaySubject.substring(1).trim();
                 if (firstChar === '_') shapeClass = 'concave';
                 else if (firstChar === '-') shapeClass = 'flat';
                 else if (firstChar === '^') shapeClass = 'convex';
             } else {
-                // 2. 無前綴時，套用預設規則
                 const isHoliday = HOLIDAY_KEYWORDS.some(k => displaySubject.includes(k));
-                
                 if (isHoliday) {
-                    // 如果是假日，預設為下凹
                     shapeClass = 'concave';
                 } else if ((dayOfWeek === 0 || dayOfWeek === 6) && subjectFromCsv === undefined) {
-                    // 如果是無自訂事件的週末，也下凹
                     shapeClass = 'concave';
                 } else {
-                    // 其他所有情況 (如預設課程)，預設為上凸
                     shapeClass = 'convex';
                 }
             }
 
-            // 3. 決定文字顏色
+            // 顏色判斷邏輯
             let dayNumberClass = '';
             let daySubjectClass = '';
-            // 檢查的是處理完前綴後的 displaySubject
+
+            // 優先判斷假日，影響數字顏色
             if (HOLIDAY_KEYWORDS.some(k => displaySubject.includes(k))) {
                 dayNumberClass = 'day-number-accent';
                 daySubjectClass = 'day-subject-accent';
-            } else if (subjectFromCsv !== undefined && subjectFromDefault && subjectFromCsv !== subjectFromDefault) {
-                daySubjectClass = 'day-subject-accent';
             }
-            
-            // 4. 組合 Class 和 HTML
+
+            // 接著判斷是否為課程，以決定科目顏色
+            let courseFound = false;
+            for (const course of COURSE_CONFIG) {
+                // 使用 .includes() 進行部分匹配
+                if (displaySubject.includes(course.name)) {
+                    daySubjectClass = course.className;
+                    courseFound = true;
+                    break; // 找到第一個匹配的課程就停止
+                }
+            }
+
+            // 如果不是課程，也不是假日，再判斷是否為其他自訂事件
+            if (!courseFound && subjectFromCsv !== undefined && subjectFromDefault && subjectFromCsv !== subjectFromDefault) {
+                // 排除假日的情況，避免覆蓋數字顏色
+                if (!HOLIDAY_KEYWORDS.some(k => displaySubject.includes(k))) {
+                    // daySubjectClass = 'day-subject-accent'; // 使用通用的藍色
+                }
+            }
+
             cell.className = `neumo day-cell ${shapeClass} soft text-inset`;
-            cell.innerHTML = `<div class="day-number ${dayNumberClass}">${day}</div><div class="day-subject ${daySubjectClass}">${displaySubject || '　'}</div>`;
+            cell.innerHTML = `<div class="day-number ${dayNumberClass} ${daySubjectClass}">${day}</div><div class="day-subject ${daySubjectClass}">${displaySubject || '　'}</div>`;
 
             cell.addEventListener('click', () => showModal(currentDateStr, subjectFromCsv || ''));
             calendarGrid.appendChild(cell);
         }
-        
-        // 填補下個月日期
+
         let totalCells = startDayOfWeek + daysInMonth;
         let nextMonthDay = 1;
         while (totalCells % 7 !== 0) {
@@ -301,7 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateFooterDate() {
         const footerDateElement = document.getElementById('update-date');
-        if (!footerDateElement) return; 
+        if (!footerDateElement) return;
 
         const today = new Date();
         const year = today.getFullYear();
