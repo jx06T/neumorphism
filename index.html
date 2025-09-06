@@ -30,11 +30,12 @@
             <div class="control-group">
                 <label for="csv-input">自訂事件 (會覆蓋預設課表)</label>
                 <textarea id="csv-input" rows="9" class="neumo concave"
-                    placeholder="格式: YYYY-MM-DD,事件名稱&#10;點擊下方日期可直接修改此處資料。"></textarea>
+                    placeholder="格式：YYYY-MM-DD,事件名稱&#10;前綴：_凹 -平 ^凸&#10;點擊「還原預設」可載入預設資料&#10;點擊下方日期可直接修改此處資料"></textarea>
             </div>
             <div class="control-group">
                 <label>操作</label>
                 <div class="button-group">
+                    <button id="restore-default-btn" class="neumo convex soft">還原預設</button>
                     <button id="export-btn" class="neumo convex soft accent">匯出圖片</button>
                 </div>
             </div>

@@ -68,6 +68,11 @@ body.dark-theme {
       var(--shadow-D);
 }
 
+/* [新增] 平面樣式 */
+.neumo.flat {
+  box-shadow: none;
+}
+
 /* --- 狀態 Class --- */
 button.neumo:not(.day-cell):active,
 button.neumo.active {
