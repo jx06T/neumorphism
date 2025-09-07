@@ -10,13 +10,13 @@
   --nm-text-muted-light: #d6d6d6;
   --nm-text-g-light: #a2a3a5;
   /* --nm-accent: #28cfdb; */
-  --nm-accent: #b8f0e5;
+  --nm-accent: #90c9d1;
 
   /* 深色主題 */
-  --nm-bg-dark: #2b2f35;
-  --nm-text-dark: #c1c3c9;
-  --nm-shadow-dark-L: #343840;
-  --nm-shadow-dark-D: #22252a;
+  --nm-bg-dark: #262a2f;
+  --nm-text-dark: #babcc3;
+  --nm-shadow-dark-L: #2d3238;
+  --nm-shadow-dark-D: #1c1f23;
   --nm-text-muted-dark: #626467;
   --nm-text-g-dark: #8e8f92;
 
@@ -57,9 +57,9 @@ body.dark-theme {
   --course-color-algo: #48C463;
   --course-color-python: #FFA94D;
   --course-color-security: #FF6B78; */
-  --course-color-web: #8cabe3;
-  --course-color-unity: #c594d6;
-  --course-color-algo: #cfe89e;
+  --course-color-web: #7294d3;
+  --course-color-unity: #bc8acd;
+  --course-color-algo: #9eda8b;
   --course-color-python: #f9d588;
   --course-color-security: #fa897b;
 }
