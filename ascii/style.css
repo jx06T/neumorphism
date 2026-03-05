@@ -1,0 +1,217 @@
+/* style.css */
+
+@font-face {
+  font-family: "UbuntuMonoR"; /* 你可以自己取一個好記的名字 */
+  src: url("UbuntuMono-R.ttf") format("truetype"); /* 替換成你真實的檔案名稱 */
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+:root {
+  /* ==== 請在這裡填入你的本地字體名稱 ==== */
+  --local-font: "UbuntuMonoR", "Courier New", "Consolas", monospace;
+
+  /* 終端機配色 */
+  --bg-color: #121212;
+  --panel-bg: #1e1e1e;
+  --text-color: #e0e0e0;
+  /* --border-color: #444; */
+  --border-color: #545454;
+  --primary-color: #00ff00; /* 終端機綠 */
+  --muted-color: #666;
+
+  /* 課程/事件顏色 (灰階或亮色) */
+  /* --color-ml: #569cd6;
+  --color-free: #d4d4d4;
+  --color-algo: #4ec9b0;
+  --color-pat: #ce9178;
+  --color-web: #c586c0;  */
+
+  --color-ml: #bc8acd;
+  --color-free: #f9d588;
+  --color-algo: #9eda8b;
+  --color-pat: #f29646;
+  --color-web: #7294d3;
+  --color-holiday: #dd493e;
+  --color-other: #a3a3a3; /* 黃色 */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: sans-serif; /* 介面字體 */
+  padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+h1 {
+  color: var(--primary-color);
+  font-family: var(--local-font);
+  font-weight: normal;
+}
+
+/* 控制面板 */
+.panel {
+  background-color: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.textarea-group {
+  grid-column: 1 / -1;
+}
+
+label {
+  font-family: var(--local-font);
+  color: var(--primary-color);
+  font-size: 0.9rem;
+}
+
+.input-element {
+  background-color: #000;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 0.8rem;
+  font-family: var(--local-font);
+  border-radius: 4px;
+  outline: none;
+  resize: vertical;
+}
+
+.input-element:focus {
+  border-color: var(--primary-color);
+}
+
+textarea.input-element {
+  min-height: 120px;
+}
+
+/* 按鈕樣式 */
+.btn {
+  background-color: #333;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-family: var(--local-font);
+  transition: 0.2s;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  background-color: #444;
+}
+.btn-primary {
+  background-color: #003300;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  font-weight: bold;
+  padding: 1rem;
+}
+.btn-primary:hover {
+  background-color: var(--primary-color);
+  color: #000;
+}
+.mt-auto {
+  margin-top: auto;
+}
+
+/* 月份選擇器 */
+#month-selector {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 5px;
+}
+#month-selector .btn.active {
+  background-color: var(--primary-color);
+  color: #000;
+}
+#year-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#current-year-display {
+  font-family: var(--local-font);
+  font-size: 1.2rem;
+}
+
+/* ASCII 畫布區塊 */
+#calendar-wrapper {
+  overflow-x: auto;
+}
+#render-area {
+  background-color: #000;
+  padding: 20px;
+  border-radius: 4px;
+  display: inline-block; /* 讓截圖能包住全部內容 */
+}
+
+/* 核心 ASCII 字體設定 */
+#ascii-calendar {
+  font-family: var(--local-font);
+  font-size: 16px;
+  line-height: 1.2;
+  white-space: pre; /* 保留所有空格 */
+  color: var(--text-color);
+}
+
+/* 文字顏色 Classes */
+.c-ml {
+  color: var(--color-ml);
+}
+.c-free {
+  color: var(--color-free);
+}
+.c-algo {
+  color: var(--color-algo);
+}
+.c-pat {
+  color: var(--color-pat);
+}
+.c-web {
+  color: var(--color-web);
+}
+.c-holiday {
+  color: var(--color-holiday);
+  /* font-weight: bold; */
+}
+.c-other {
+  color: var(--color-other);
+}
+.c-muted {
+  color: var(--muted-color);
+}
+.c-border {
+  color: var(--border-color);
+}

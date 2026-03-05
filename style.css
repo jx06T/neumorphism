@@ -1,0 +1,51 @@
+.d-top {
+  margin-top: 2rem;
+}
+h1 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+.des,
+.cat {
+  margin-left: 7%;
+  margin-right: 7%;
+}
+.des {
+  margin-top: 2rem;
+  line-height: 1.5rem;
+}
+.cat {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+.cat > a {
+  display: block;
+  background-color: #eee;
+  border-radius: 0.5rem;
+  width: 40%;
+  padding: 1rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+@font-face {
+  font-family: "UbuntuMonoR"; /* 你可以自己取一個好記的名字 */
+  src: url("ascii/UbuntuMono-R.ttf") format("truetype"); /* 替換成你真實的檔案名稱 */
+  font-weight: normal;
+  font-style: normal;
+}
+
+body,body * {
+  font-family: "UbuntuMonoR", "Courier New", "Consolas", monospace;
+}
+

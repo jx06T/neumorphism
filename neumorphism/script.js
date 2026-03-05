@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     const DEFAULT_SCHEDULE = { 1: 'Unity', 2: '資安', 3: '演算法', 4: 'Python', 5: '網頁' };
     const MONTH_NAMES = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
-    const HOLIDAY_KEYWORDS = ['假', '節', '日'];
+    const HOLIDAY_KEYWORDS = ['假', '節', '日',"畢旅","式","線上"];
 
     const DEFAULT_CSV = `2025-09-01,-
 2025-09-02,-

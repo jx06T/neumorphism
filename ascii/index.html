@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>純文字課表產生器</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- 引入截圖庫 -->
+    <script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@3.7.1/dist/dom-to-image-more.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>[ 純文字課表產生器_ ]</h1>
+        
+        <div class="controls panel">
+            <div class="control-group">
+                <label>> 選擇年月</label>
+                <div id="year-controls">
+                    <button id="prev-year-btn" class="btn">◀</button>
+                    <span id="current-year-display">2026</span>
+                    <button id="next-year-btn" class="btn">▶</button>
+                </div>
+                <div id="month-selector"></div>
+            </div>
+            
+            <div class="control-group">
+                <label>> 表格樣式設定</label>
+                <select id="style-selector" class="input-element">
+                    <option value="ascii">標準 ASCII (+ - |)</option>
+                    <option value="markdown">Markdown (| - |)</option>
+                    <option value="unicode_single">Unicode 單線 (┌ ┼ ┐)</option>
+                    <option value="unicode_double">Unicode 雙線 (╔ ╬ ╗)</option>
+                </select>
+                
+                <div class="button-group mt-auto">
+                    <button id="export-btn" class="btn btn-primary">匯出為圖片 (Export)</button>
+                </div>
+            </div>
+
+            <div class="control-group textarea-group">
+                <label>> 自訂事件 (YYYY-MM-DD,事件)</label>
+                <textarea id="csv-input" class="input-element" spellcheck="false" placeholder="格式：YYYY-MM-DD,事件名稱&#10;前綴：_凹 -平 ^凸 (自動忽略)"></textarea>
+            </div>
+        </div>
+
+        <!-- ASCII 日曆顯示區 -->
+        <div id="calendar-wrapper" class="panel">
+            <div id="render-area">
+                <pre id="ascii-calendar"></pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
